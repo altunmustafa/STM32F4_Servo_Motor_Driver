@@ -17,41 +17,21 @@ Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
 CPU DLL:         SARMCM3.DLL V5.28.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
-Target DLL:      UL2CM3.DLL V1.162.16.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.6.0
 Dialog DLL:      TCM.DLL V1.36.2.0
  
 <h2>Project:</h2>
 C:\Users\Altunmstf\Documents\GitHub\STM32F4_Servo_Motor_Driver\Servo_Motor_Driver.uvprojx
-Project File Date:  01/13/2021
+Project File Date:  01/20/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling ma_pwm.c...
 compiling ma_gpio.c...
-compiling ma_delay.c...
 compiling main.c...
-.\MA_Libs\ma_pwm.h(23): warning:  #1-D: last line of file ends without a newline
-  #endif /* MA_PWM_H */
-.\MA_Libs\ma_servo.h(24): warning:  #1-D: last line of file ends without a newline
-  #endif /* MA_SERVO_H */
-main.c: 2 warnings, 0 errors
-compiling ma_servo.c...
-MA_Libs\ma_pwm.h(23): warning:  #1-D: last line of file ends without a newline
-  #endif /* MA_PWM_H */
-MA_Libs\ma_servo.h(24): warning:  #1-D: last line of file ends without a newline
-  #endif /* MA_SERVO_H */
-MA_Libs\ma_servo.c(8): warning:  #1-D: last line of file ends without a newline
-  }
-MA_Libs\ma_servo.c: 3 warnings, 0 errors
-compiling misc.c...
-compiling stm32f4xx_gpio.c...
-compiling stm32f4xx_rcc.c...
-compiling stm32f4xx_tim.c...
-compiling system_stm32f4xx.c...
 linking...
-Program Size: Code=2412 RO-data=424 RW-data=24 ZI-data=1632  
-".\Objects\Servo_Motor_Driver.axf" - 0 Error(s), 5 Warning(s).
+Program Size: Code=4700 RO-data=764 RW-data=24 ZI-data=1632  
+".\Objects\Servo_Motor_Driver.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -85,35 +65,35 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.3.0
 
    * Component: ARM::CMSIS:DSP:Library:1.7.0
-      Library file:  CMSIS\DSP\Lib\ARM\arm_cortexM4lf_math.lib
       Include file:  CMSIS\DSP\Include\arm_math.h
+      Library file:  CMSIS\DSP\Lib\ARM\arm_cortexM4lf_math.lib
 
    * Component: Keil::Device:Startup:1.3.1
+      Source file:   Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
       Source file:   Device\Source\ARM\STM32F4xx_OTP.s
       Include file:  Device\Include\stm32f4xx.h
-      Source file:   Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
       Source file:   Device\Source\ARM\startup_stm32f40_41xxx.s
-      Include file:  RTE_Driver\Config\RTE_Device.h
       Source file:   Device\Source\system_stm32f4xx.c
+      Include file:  RTE_Driver\Config\RTE_Device.h
 
    * Component: Keil::Device:StdPeriph Drivers:Framework:1.3.1
+      Source file:   Device\StdPeriph_Driver\templates\stm32f4xx_conf.h
       Source file:   Device\StdPeriph_Driver\src\misc.c
       Include file:  Device\StdPeriph_Driver\templates\stm32f4xx_it.h
       Source file:   Device\StdPeriph_Driver\templates\stm32f4xx_it.c
-      Source file:   Device\StdPeriph_Driver\templates\stm32f4xx_conf.h
 
    * Component: Keil::Device:StdPeriph Drivers:GPIO:1.3.0
       Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_gpio.h
       Source file:   Device\StdPeriph_Driver\src\stm32f4xx_gpio.c
 
    * Component: Keil::Device:StdPeriph Drivers:RCC:1.3.0
-      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_rcc.c
       Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_rcc.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_rcc.c
 
    * Component: Keil::Device:StdPeriph Drivers:TIM:1.3.0
       Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_tim.h
       Source file:   Device\StdPeriph_Driver\src\stm32f4xx_tim.c
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

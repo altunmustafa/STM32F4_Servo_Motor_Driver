@@ -17,3 +17,5 @@
 .\objects\main.o: .\MA_Libs\ma_delay.h
 .\objects\main.o: .\MA_Libs\ma_servo.h
 .\objects\main.o: .\MA_Libs\ma_pwm.h
+.\objects\main.o: .\MA_Libs\ma_gpio.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
