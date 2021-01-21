@@ -14,6 +14,7 @@ void MA_GPIO_Init(MA_GPIO_t MA_GPIO)
 	GPIO_InitStructure.GPIO_OType 	= MA_GPIO.OType;
 	GPIO_InitStructure.GPIO_PuPd 	= MA_GPIO.PuPd;
 	GPIO_InitStructure.GPIO_Speed 	= MA_GPIO.Speed;
+	
 	GPIO_Init(MA_GPIO.Port, &GPIO_InitStructure);
 	
 	if(MA_GPIO.Mode == GPIO_Mode_AF)
@@ -51,12 +52,9 @@ uint16_t MA_GPIO_GetPinSource(uint16_t GPIO_Pin)
 	
 	while (GPIO_Pin > 1)
 	{
-		
 		PinSource++;	/* Increase PinSource */
-		
 		GPIO_Pin >>= 1;	/* Shift right */
 	}
-	
 	return PinSource; /* Return source */
 }
 
