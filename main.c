@@ -2,17 +2,20 @@
 #include "ma_delay.h"
 #include "ma_servo.h"
 #include "ma_gpio.h"
+#include "ma_tim.h"
+
+#define LED_G D12 	/* Green LED */
+#define LED_O D13	/* Orange LED */
+#define LED_R D14	/* Red LED */
+#define LED_B D15	/* Blue LED */
 
 #define TIM12_FREQ 200000 
 #define TIM12_PERIOD 4000 /* TIM_FREQ / TIM_Period = 50 Hz (Servo motor frequency) */
 
 
-
 int main()
 {
 	MA_DELAY_Init();
-	
-	uint16_t prescaler_Tim12;
 	
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
@@ -47,15 +50,16 @@ int main()
 	
 	MA_GPIO_Init(B14);
 	
-	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+	MA_TIM_TimeBase_t MA_TIM_TimeBase;
 	
-	prescaler_Tim12 = (uint16_t)((SystemCoreClock/2)/TIM12_FREQ) - 1;
-	TIM_DeInit(TIM12);
-	TIM_TimeBaseStructure.TIM_ClockDivision	= 0;
-	TIM_TimeBaseStructure.TIM_CounterMode	= TIM_CounterMode_Up;
-	TIM_TimeBaseStructure.TIM_Period	= TIM12_PERIOD-1; 
-	TIM_TimeBaseStructure.TIM_Prescaler	= prescaler_Tim12;
-	TIM_TimeBaseInit(TIM12, &TIM_TimeBaseStructure);
+	MA_TIM_TimeBase.TIMx		= TIM12;
+	MA_TIM_TimeBase.ClockDivision	= 0;
+	MA_TIM_TimeBase.CounterMode	= TIM_CounterMode_Up;
+	MA_TIM_TimeBase.Clock		= 200000;
+	MA_TIM_TimeBase.Signal_Clock	= 50; 
+	
+	MA_TIM_TimeBaseInit(&MA_TIM_TimeBase);
+	
 	
 	TIM_OCInitTypeDef TIM_OCInitStructure;
 	TIM_OCInitStructure.TIM_OCMode 		= TIM_OCMode_PWM1;
