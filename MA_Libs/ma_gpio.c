@@ -1,5 +1,10 @@
 #include "ma_gpio.h"
 
+/**
+* @brief  Initializes the MA_GPIO.Port peripheral according to the specified parameters in the MA_GPIO.
+* @param  MA_GPIO: MA_GPIO_t structure that contains the configuration information for the specified GPIO peripheral.
+* @retval None
+*/
 void MA_GPIO_Init(MA_GPIO_t MA_GPIO) 
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -17,6 +22,12 @@ void MA_GPIO_Init(MA_GPIO_t MA_GPIO)
 	}
 }
 
+/**
+* @brief  Initializes the many peripheral according to the specified parameters in the many MA_GPIO.
+* @param  CountPin: Number of pin configurations given to this function
+* @param  ...: Many MA_GPIO_t structures that contains the configuration information for the specified GPIO peripheral.
+* @retval None
+*/
 void MA_GPIO_MultiInit(uint8_t CountPin, ...)
 {
 	va_list Args;

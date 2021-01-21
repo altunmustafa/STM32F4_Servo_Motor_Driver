@@ -24,6 +24,7 @@ void MA_GPIO_MultiInit(uint8_t CountPin, ...);
 uint16_t MA_GPIO_GetPinSource(uint16_t GPIO_Pin);
 uint16_t MA_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
 
+
 #ifdef __cplusplus
 }
 #endif	/* __cplusplus */
