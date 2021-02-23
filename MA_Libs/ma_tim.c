@@ -9,25 +9,25 @@ void MA_TIM_TimeBaseInit(MA_TIM_TimeBase_t* pTimeBase)
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 
     TIM_TimeBaseStructure.TIM_ClockDivision	= pTimeBase->ClockDivision;
-    TIM_TimeBaseStructure.TIM_CounterMode	= pTimeBase->CounterMode;
-    TIM_TimeBaseStructure.TIM_Period	= pTimeBase->Period;
-    TIM_TimeBaseStructure.TIM_Prescaler	= pTimeBase->Prescaler;
+    TIM_TimeBaseStructure.TIM_CounterMode   = pTimeBase->CounterMode;
+    TIM_TimeBaseStructure.TIM_Period        = pTimeBase->Period;
+    TIM_TimeBaseStructure.TIM_Prescaler	    = pTimeBase->Prescaler;
 
     TIM_TimeBaseInit(pTimeBase->TIMx, &TIM_TimeBaseStructure);
 }
 
 void MA_TIM_CompleteParameters(MA_TIM_TimeBase_t* pTimeBase)
 {
-    pTimeBase->APBx = MA_TIM_ObtainAPBx(pTimeBase->TIMx);	/* Set APBx */
+    pTimeBase->APBx = MA_TIM_ObtainAPBx(pTimeBase->TIMx);   /* Set APBx */
 
     if( pTimeBase->Clock > 0 )
     {
-        pTimeBase->Prescaler = MA_TIM_CalcPrescaler(pTimeBase->APBx, pTimeBase->Clock); /* Set Prescaler by target Clock*/
+        pTimeBase->Prescaler = MA_TIM_CalcPrescaler(pTimeBase->APBx, pTimeBase->Clock);     /* Set Prescaler by target Clock*/
     }
 
     if( pTimeBase->Signal_Clock > 0 )
     {
-        pTimeBase->Period = (uint32_t) (pTimeBase->Clock / pTimeBase->Signal_Clock) - 1; /* Set Period by target Signal_Clock*/ 
+        pTimeBase->Period = (uint32_t) (pTimeBase->Clock / pTimeBase->Signal_Clock) - 1;    /* Set Period by target Signal_Clock*/ 
     }
 }
 

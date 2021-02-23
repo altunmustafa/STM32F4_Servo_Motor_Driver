@@ -9,13 +9,13 @@ extern "C" {
 #include <stdarg.h>
 
 typedef struct{
-    GPIO_TypeDef*		Port; 	/* GPIOx */
-    uint16_t		    Pin;	/* GPIO_Pin_x */
-    GPIOMode_TypeDef 	Mode;	/* GPIO_Mode_IN - GPIO_Mode_OUT - GPIO_Mode_AF - GPIO_Mode_AN */
-    GPIOOType_TypeDef	OType;	/* GPIO_OType_PP - GPIO_OType_OD */
-    GPIOPuPd_TypeDef	PuPd;	/* GPIO_PuPd_NOPULL - GPIO_PuPd_UP - GPIO_PuPd_DOWN */
-    GPIOSpeed_TypeDef	Speed;	/* GPIO_Speed_2MHz - GPIO_Speed_25MHz - GPIO_Speed_50MHz - GPIO_Speed_100MHz */
-    uint8_t 		    AF;	    /* GPIO_AF_TIMx */
+    GPIO_TypeDef*       Port;   /* GPIOx */
+    uint16_t            Pin;    /* GPIO_Pin_x */
+    GPIOMode_TypeDef    Mode;   /* GPIO_Mode_IN - GPIO_Mode_OUT - GPIO_Mode_AF - GPIO_Mode_AN */
+    GPIOOType_TypeDef   OType;  /* GPIO_OType_PP - GPIO_OType_OD */
+    GPIOPuPd_TypeDef    PuPd;   /* GPIO_PuPd_NOPULL - GPIO_PuPd_UP - GPIO_PuPd_DOWN */
+    GPIOSpeed_TypeDef   Speed;  /* GPIO_Speed_2MHz - GPIO_Speed_25MHz - GPIO_Speed_50MHz - GPIO_Speed_100MHz */
+    uint8_t             AF;     /* GPIO_AF_TIMx */
 }MA_GPIO_t;
 
 void MA_GPIO_Init(MA_GPIO_t MA_GPIO);

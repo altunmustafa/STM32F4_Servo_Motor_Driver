@@ -9,11 +9,11 @@ void MA_GPIO_Init(MA_GPIO_t MA_GPIO)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 
-    GPIO_InitStructure.GPIO_Pin 	= MA_GPIO.Pin;
-    GPIO_InitStructure.GPIO_Mode 	= MA_GPIO.Mode;
-    GPIO_InitStructure.GPIO_OType 	= MA_GPIO.OType;
-    GPIO_InitStructure.GPIO_PuPd 	= MA_GPIO.PuPd;
-    GPIO_InitStructure.GPIO_Speed 	= MA_GPIO.Speed;
+    GPIO_InitStructure.GPIO_Pin     = MA_GPIO.Pin;
+    GPIO_InitStructure.GPIO_Mode    = MA_GPIO.Mode;
+    GPIO_InitStructure.GPIO_OType   = MA_GPIO.OType;
+    GPIO_InitStructure.GPIO_PuPd    = MA_GPIO.PuPd;
+    GPIO_InitStructure.GPIO_Speed   = MA_GPIO.Speed;
 
     GPIO_Init(MA_GPIO.Port, &GPIO_InitStructure);
 
