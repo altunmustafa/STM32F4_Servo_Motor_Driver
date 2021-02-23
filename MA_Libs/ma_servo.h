@@ -9,9 +9,9 @@ extern "C" {
 #include "ma_pwm.h"
 
 typedef struct{
-	MA_PWM_Conf_t PWM;		/*!< PWM settings */
-	uint32_t PulseMin;
-	uint32_t PulseRange;
+    MA_PWM_Conf_t PWM;		/*!< PWM settings */
+    uint32_t PulseMin;
+    uint32_t PulseRange;
 }MA_SERVO_t;
 
 int SERVO_SetAngle(MA_SERVO_t Servo, uint16_t Angle);
