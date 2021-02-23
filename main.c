@@ -21,25 +21,23 @@ int main()
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM12, ENABLE);
 
+    /* Initialize GPIO for LEDs */
     MA_GPIO_t D12, D13, D14, D15;
-
     D12.Port    = GPIOD;
     D12.Pin     = GPIO_Pin_12;
     D12.Mode    = GPIO_Mode_OUT;
     D12.OType   = GPIO_OType_PP;
     D12.PuPd    = GPIO_PuPd_NOPULL;
     D12.Speed   = GPIO_Speed_100MHz;
-
+    
     D15 = D14 = D13 = D12;
-
     D13.Pin = GPIO_Pin_13;
     D14.Pin = GPIO_Pin_14;
     D15.Pin = GPIO_Pin_15;
-
     MA_GPIO_MultiInit(4, D12, D13, D14, D15);
 
+    /* Initialize GPIO for PWM Pin */
     MA_GPIO_t B14;
-
     B14.Port    = GPIOB;
     B14.Pin     = GPIO_Pin_14;
     B14.Mode    = GPIO_Mode_AF;
@@ -47,30 +45,30 @@ int main()
     B14.PuPd    = GPIO_PuPd_UP;
     B14.Speed   = GPIO_Speed_100MHz;
     B14.AF      = GPIO_AF_TIM12;
-
     MA_GPIO_Init(B14);
 
-    MA_TIM_TimeBase_t MA_TIM_TimeBase;
+    /* Initialize the TIMx for PWM Signal */
+    MA_TIM_TimeBaseInitStructure_t MA_TIM_TimeBaseInitStructure;
+    MA_TIM_TimeBaseInitStructure.TIMx           = TIM12;
+    MA_TIM_TimeBaseInitStructure.ClockDivision  = 0;
+    MA_TIM_TimeBaseInitStructure.CounterMode    = TIM_CounterMode_Up;
+    MA_TIM_TimeBaseInitStructure.Clock          = 200000;
+    MA_TIM_TimeBaseInitStructure.Signal_Clock   = 50; 
+    MA_TIM_TimeBaseInit(&MA_TIM_TimeBaseInitStructure);
 
-    MA_TIM_TimeBase.TIMx            = TIM12;
-    MA_TIM_TimeBase.ClockDivision   = 0;
-    MA_TIM_TimeBase.CounterMode     = TIM_CounterMode_Up;
-    MA_TIM_TimeBase.Clock           = 200000;
-    MA_TIM_TimeBase.Signal_Clock    = 50; 
+    /* Initialize the Channelx of TIMx for PWM Signal*/ 
+    MA_TIM_OCInitStructure_t MA_TIM_OCInitStructure;
+    MA_TIM_OCInitStructure.TIMx         = TIM12;
+    MA_TIM_OCInitStructure.CHx          = CH1;
+    MA_TIM_OCInitStructure.OCMode       = TIM_OCMode_PWM1;
+    MA_TIM_OCInitStructure.OCPolarity   = TIM_OCPolarity_High;
+    MA_TIM_OCInitStructure.OutputState  = TIM_OutputState_Enable;
+    MA_TIM_OCInitStructure.Pulse        = 200;
+    MA_TIM_OCInit(&MA_TIM_OCInitStructure);
 
-    MA_TIM_TimeBaseInit(&MA_TIM_TimeBase);
-
-
-    TIM_OCInitTypeDef TIM_OCInitStructure;
-    TIM_OCInitStructure.TIM_OCMode 	    = TIM_OCMode_PWM1;
-    TIM_OCInitStructure.TIM_OCPolarity  = TIM_OCPolarity_High;
-    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-    TIM_OCInitStructure.TIM_Pulse       = 200;
-    TIM_OC1Init(TIM12, &TIM_OCInitStructure);
-
-    TIM_Cmd(TIM12, ENABLE);
-    TIM_OC1PreloadConfig(TIM12, TIM_OCPreload_Enable);
-    TIM_ARRPreloadConfig(TIM12, ENABLE);
+    MA_TIM_Enable(TIM12);
+    MA_TIM_OC1PreloadEnable(TIM12);
+    MA_TIM_ARRPreloadEnable(TIM12);
 
     MA_PWM_Conf_t pwm1;
     MA_SERVO_t servo1;

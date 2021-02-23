@@ -1,33 +1,33 @@
 #include "ma_tim.h"
 
-void MA_TIM_TimeBaseInit(MA_TIM_TimeBase_t* pTimeBase)
+void MA_TIM_TimeBaseInit(MA_TIM_TimeBaseInitStructure_t* MA_TIM_TimeBase)
 {
-    TIM_DeInit(pTimeBase->TIMx);
+    TIM_DeInit(MA_TIM_TimeBase->TIMx);
 
-    MA_TIM_CompleteParameters(pTimeBase);
+    MA_TIM_CompleteParameters(MA_TIM_TimeBase);
 
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 
-    TIM_TimeBaseStructure.TIM_ClockDivision = pTimeBase->ClockDivision;
-    TIM_TimeBaseStructure.TIM_CounterMode   = pTimeBase->CounterMode;
-    TIM_TimeBaseStructure.TIM_Period        = pTimeBase->Period;
-    TIM_TimeBaseStructure.TIM_Prescaler	    = pTimeBase->Prescaler;
+    TIM_TimeBaseStructure.TIM_ClockDivision = MA_TIM_TimeBase->ClockDivision;
+    TIM_TimeBaseStructure.TIM_CounterMode   = MA_TIM_TimeBase->CounterMode;
+    TIM_TimeBaseStructure.TIM_Period        = MA_TIM_TimeBase->Period;
+    TIM_TimeBaseStructure.TIM_Prescaler	    = MA_TIM_TimeBase->Prescaler;
 
-    TIM_TimeBaseInit(pTimeBase->TIMx, &TIM_TimeBaseStructure);
+    TIM_TimeBaseInit(MA_TIM_TimeBase->TIMx, &TIM_TimeBaseStructure);
 }
 
-void MA_TIM_CompleteParameters(MA_TIM_TimeBase_t* pTimeBase)
+void MA_TIM_CompleteParameters(MA_TIM_TimeBaseInitStructure_t* MA_TIM_TimeBase)
 {
-    pTimeBase->APBx = MA_TIM_ObtainAPBx(pTimeBase->TIMx);   /* Set APBx */
+    MA_TIM_TimeBase->APBx = MA_TIM_ObtainAPBx(MA_TIM_TimeBase->TIMx);   /* Set APBx */
 
-    if( pTimeBase->Clock > 0 )
+    if( MA_TIM_TimeBase->Clock > 0 )
     {
-        pTimeBase->Prescaler = MA_TIM_CalcPrescaler(pTimeBase->APBx, pTimeBase->Clock);     /* Set Prescaler by target Clock*/
+        MA_TIM_TimeBase->Prescaler = MA_TIM_CalcPrescaler(MA_TIM_TimeBase->APBx, MA_TIM_TimeBase->Clock);     /* Set Prescaler by target Clock*/
     }
 
-    if( pTimeBase->Signal_Clock > 0 )
+    if( MA_TIM_TimeBase->Signal_Clock > 0 )
     {
-        pTimeBase->Period = (uint32_t) (pTimeBase->Clock / pTimeBase->Signal_Clock) - 1;    /* Set Period by target Signal_Clock*/ 
+        MA_TIM_TimeBase->Period = (uint32_t) (MA_TIM_TimeBase->Clock / MA_TIM_TimeBase->Signal_Clock) - 1;    /* Set Period by target Signal_Clock*/ 
     }
 }
 
@@ -59,3 +59,28 @@ MA_TIM_APBx_t MA_TIM_ObtainAPBx(TIM_TypeDef* TIMx)
     return APB_ERR;
 }
 
+void MA_TIM_OCInit(MA_TIM_OCInitStructure_t *MA_TIM_OCInit){
+    TIM_OCInitTypeDef TIM_OCInitStructure;
+    TIM_OCInitStructure.TIM_OCMode      = MA_TIM_OCInit->OCMode;
+    TIM_OCInitStructure.TIM_OCPolarity  = MA_TIM_OCInit->OCPolarity;
+    TIM_OCInitStructure.TIM_OutputState = MA_TIM_OCInit->OutputState;
+    TIM_OCInitStructure.TIM_Pulse       = MA_TIM_OCInit->Pulse;
+    
+    switch(MA_TIM_OCInit->CHx){
+        case CH1:
+            TIM_OC1Init(MA_TIM_OCInit->TIMx, &TIM_OCInitStructure);
+            break;
+        case CH2:
+            TIM_OC2Init(MA_TIM_OCInit->TIMx, &TIM_OCInitStructure);
+            break;
+        case CH3:
+            TIM_OC3Init(MA_TIM_OCInit->TIMx, &TIM_OCInitStructure);
+            break;
+        case CH4:
+            TIM_OC4Init(MA_TIM_OCInit->TIMx, &TIM_OCInitStructure);
+            break;
+        default:
+            assert_param(0);
+    }
+    
+}
