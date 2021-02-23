@@ -24,7 +24,7 @@ int main()
     MA_GPIO_t D12, D13, D14, D15;
 
     D12.Port    = GPIOD;
-    D12.Pin	    = GPIO_Pin_12;
+    D12.Pin     = GPIO_Pin_12;
     D12.Mode    = GPIO_Mode_OUT;
     D12.OType   = GPIO_OType_PP;
     D12.PuPd    = GPIO_PuPd_NOPULL;
@@ -32,7 +32,7 @@ int main()
 
     D15 = D14 = D13 = D12;
 
-    D13.Pin	= GPIO_Pin_13;
+    D13.Pin = GPIO_Pin_13;
     D14.Pin = GPIO_Pin_14;
     D15.Pin = GPIO_Pin_15;
 
@@ -41,7 +41,7 @@ int main()
     MA_GPIO_t B14;
 
     B14.Port    = GPIOB;
-    B14.Pin	    = GPIO_Pin_14;
+    B14.Pin     = GPIO_Pin_14;
     B14.Mode    = GPIO_Mode_AF;
     B14.OType   = GPIO_OType_PP;
     B14.PuPd    = GPIO_PuPd_UP;
@@ -52,20 +52,20 @@ int main()
 
     MA_TIM_TimeBase_t MA_TIM_TimeBase;
 
-    MA_TIM_TimeBase.TIMx		    = TIM12;
-    MA_TIM_TimeBase.ClockDivision	= 0;
-    MA_TIM_TimeBase.CounterMode	    = TIM_CounterMode_Up;
-    MA_TIM_TimeBase.Clock		    = 200000;
-    MA_TIM_TimeBase.Signal_Clock	= 50; 
+    MA_TIM_TimeBase.TIMx            = TIM12;
+    MA_TIM_TimeBase.ClockDivision   = 0;
+    MA_TIM_TimeBase.CounterMode     = TIM_CounterMode_Up;
+    MA_TIM_TimeBase.Clock           = 200000;
+    MA_TIM_TimeBase.Signal_Clock    = 50; 
 
     MA_TIM_TimeBaseInit(&MA_TIM_TimeBase);
 
 
     TIM_OCInitTypeDef TIM_OCInitStructure;
     TIM_OCInitStructure.TIM_OCMode 	    = TIM_OCMode_PWM1;
-    TIM_OCInitStructure.TIM_OCPolarity	= TIM_OCPolarity_High;
-    TIM_OCInitStructure.TIM_OutputState	= TIM_OutputState_Enable;
-    TIM_OCInitStructure.TIM_Pulse 	    = 200;
+    TIM_OCInitStructure.TIM_OCPolarity  = TIM_OCPolarity_High;
+    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+    TIM_OCInitStructure.TIM_Pulse       = 200;
     TIM_OC1Init(TIM12, &TIM_OCInitStructure);
 
     TIM_Cmd(TIM12, ENABLE);

@@ -8,7 +8,7 @@ void MA_TIM_TimeBaseInit(MA_TIM_TimeBase_t* pTimeBase)
 
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 
-    TIM_TimeBaseStructure.TIM_ClockDivision	= pTimeBase->ClockDivision;
+    TIM_TimeBaseStructure.TIM_ClockDivision = pTimeBase->ClockDivision;
     TIM_TimeBaseStructure.TIM_CounterMode   = pTimeBase->CounterMode;
     TIM_TimeBaseStructure.TIM_Period        = pTimeBase->Period;
     TIM_TimeBaseStructure.TIM_Prescaler	    = pTimeBase->Prescaler;

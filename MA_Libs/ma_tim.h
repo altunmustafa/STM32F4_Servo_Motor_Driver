@@ -17,8 +17,8 @@ typedef enum{
 }MA_TIM_APBx_t;
 
 typedef struct{
-    MA_TIM_APBx_t	APBx;
-    TIM_TypeDef* 	TIMx;       /* TIM1...TIM14 */
+    MA_TIM_APBx_t   APBx;
+    TIM_TypeDef*    TIMx;       /* TIM1...TIM14 */
     uint16_t 	Prescaler;      /* Between 0x0000 and 0xFFFF so 0-65535. */
     uint32_t	Clock;          /* Spacial parameter! 
                                  * NOTICE: This value should be divisible by "SystemCoreClock" (168.000.000 for STM32F407)
