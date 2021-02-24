@@ -11,6 +11,7 @@
 
 #define TIM12_FREQ 200000 
 #define TIM12_PERIOD 4000 /* TIM_FREQ / TIM_Period = 50 Hz (Servo motor frequency) */
+#define SERVO_MOTOR_FREQ 50
 
 
 int main()
@@ -52,8 +53,8 @@ int main()
     MA_TIM_TimeBaseInitStructure.TIMx           = TIM12;
     MA_TIM_TimeBaseInitStructure.ClockDivision  = 0;
     MA_TIM_TimeBaseInitStructure.CounterMode    = TIM_CounterMode_Up;
-    MA_TIM_TimeBaseInitStructure.Clock          = 200000;
-    MA_TIM_TimeBaseInitStructure.Signal_Clock   = 50; 
+    MA_TIM_TimeBaseInitStructure.Clock          = TIM12_FREQ;
+    MA_TIM_TimeBaseInitStructure.Signal_Clock   = SERVO_MOTOR_FREQ; 
     MA_TIM_TimeBaseInit(&MA_TIM_TimeBaseInitStructure);
 
     /* Initialize the Channelx of TIMx for PWM Signal*/ 
@@ -63,40 +64,25 @@ int main()
     MA_TIM_OCInitStructure.OCMode       = TIM_OCMode_PWM1;
     MA_TIM_OCInitStructure.OCPolarity   = TIM_OCPolarity_High;
     MA_TIM_OCInitStructure.OutputState  = TIM_OutputState_Enable;
-    MA_TIM_OCInitStructure.Pulse        = 200;
+    //MA_TIM_OCInitStructure.Pulse        = 200;
     MA_TIM_OCInit(&MA_TIM_OCInitStructure);
 
     MA_TIM_Enable(TIM12);
     MA_TIM_OC1PreloadEnable(TIM12);
     MA_TIM_ARRPreloadEnable(TIM12);
 
-    MA_PWM_Conf_t pwm1;
     MA_SERVO_t servo1;
 
-    pwm1.TIM        = TIM12;
-    pwm1.Frequency  = 50;
-    pwm1.Period     = 4000;
-    pwm1.Prescaler  = (uint16_t)((SystemCoreClock/2)/TIM12_FREQ) - 1;
-
-    servo1.PWM          = pwm1;
-    servo1.PulseMin     = 100;
-    servo1.PulseRange   = 350;
+    servo1.TIMx         = TIM12;
+    servo1.CHx          = CH1;
+    servo1.PulseMin     = 100; /* pulse=100 => 0 degree for SG90, by trial and error method */
+    servo1.PulseRange   = 350; /* pulse=450 => 180 degree for SG90, by trial and error method */
 	
-    /*
-    for(int i=0; i<=180; i+=5)
+    for(int angle=0; angle<=-180; angle+=5)
     {
-    SERVO_SetAngle(servo1, i);
-    delay(500);
+        SERVO_SetAngle(servo1, angle);
+        delay(1000);
     }
-    */
-    SERVO_SetAngle(servo1, 0);
-    delay(1000);
-    SERVO_SetAngle(servo1, 180);
-    delay(1000);
-    SERVO_SetAngle(servo1, 0);
-    delay(1000);
-    SERVO_SetAngle(servo1, 180);
-    delay(1000);
 
 }
 

@@ -83,7 +83,7 @@ typedef struct{
                                 @note This parameter is valid only for TIM1 and TIM8. */
 
     uint32_t Pulse;         /*  Specifies the pulse value to be loaded into the Capture Compare Register.
-                                -A number between 0x0000 and 0xFFFF */
+                                -A number between 0x0000 and 0xFFFF (65.535) */
                                 
     uint16_t OCPolarity;    /*  Specifies the output polarity.
                                 -TIM_OCPolarity_High

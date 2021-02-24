@@ -6,16 +6,16 @@ extern "C" {
 #endif	/* __cplusplus */
 	
 #include "stm32f4xx.h"
-#include "ma_pwm.h"
+#include "ma_tim.h"
 
 typedef struct{
-    MA_PWM_Conf_t PWM;      /*!< PWM settings */
-    uint32_t PulseMin;
-    uint32_t PulseRange;
+    TIM_TypeDef*    TIMx;       /*  -TIM1...TIM14 */
+    MA_TIM_CHx_t    CHx;        /*  -CH1...CH4 */
+    uint32_t        PulseMin;
+    uint32_t        PulseRange;
 }MA_SERVO_t;
 
 int SERVO_SetAngle(MA_SERVO_t Servo, uint16_t Angle);
-
 
 #ifdef __cplusplus
 }

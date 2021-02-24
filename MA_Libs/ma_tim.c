@@ -38,9 +38,9 @@ void MA_TIM_CompleteParameters(MA_TIM_TimeBaseInitStructure_t* MA_TIM_TimeBase)
  */
 uint16_t MA_TIM_CalcPrescaler(MA_TIM_APBx_t APBx, uint32_t DesiredClock)
 {
-    if (APBx == APB1) 	/* APB1 Clock = SystemCoreClock/4 */
+    if (APBx == APB1) 	/* APB1 Clock = SystemCoreClock/4  => TIMxCLK = SystemCoreClock/2 */
         return (uint16_t) ((SystemCoreClock / 2) / DesiredClock) - 1;
-    else if (APBx == APB2) 	/* APB2 Clock = SystemCoreClock/2 */
+    else if (APBx == APB2) 	/* APB2 Clock = SystemCoreClock/2 => TIMxCLK = SystemCoreClock */
         return (uint16_t) ((SystemCoreClock) / DesiredClock) - 1;
 
     return 0;

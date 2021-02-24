@@ -2,7 +2,25 @@
 
 int SERVO_SetAngle(MA_SERVO_t Servo, uint16_t Angle)
 {
-    Servo.PWM.TIM->CCR1 = (int) (Servo.PulseMin + (Servo.PulseRange * Angle/180));
+    uint32_t pulse = (uint32_t) (Servo.PulseMin + (Servo.PulseRange * Angle/180));
+    
+    switch(Servo.CHx){
+        case CH1:
+            Servo.TIMx->CCR1 = pulse;
+            break;
+        case CH2:
+            Servo.TIMx->CCR2 = pulse;
+            break;
+        case CH3:
+            Servo.TIMx->CCR3 = pulse;
+            break;
+        case CH4:
+            Servo.TIMx->CCR4 = pulse;
+            break;
+        default:
+            return 0;
+    }
+    
     GPIO_ToggleBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
     return 1;
 }

@@ -413,16 +413,6 @@
               <FilePath>.\MA_Libs\ma_servo.c</FilePath>
             </File>
             <File>
-              <FileName>ma_pwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MA_Libs\ma_pwm.c</FilePath>
-            </File>
-            <File>
-              <FileName>ma_pwm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\MA_Libs\ma_pwm.h</FilePath>
-            </File>
-            <File>
               <FileName>ma_gpio.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\MA_Libs\ma_gpio.h</FilePath>
