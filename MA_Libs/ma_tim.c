@@ -20,14 +20,14 @@ void MA_TIM_CompleteParameters(MA_TIM_TimeBaseInitStructure_t* MA_TIM_TimeBase)
 {
     MA_TIM_TimeBase->APBx = MA_TIM_ObtainAPBx(MA_TIM_TimeBase->TIMx);   /* Set APBx */
 
-    if( MA_TIM_TimeBase->Clock > 0 )
+    if( MA_TIM_TimeBase->TimerClock > 0 )
     {
-        MA_TIM_TimeBase->Prescaler = MA_TIM_CalcPrescaler(MA_TIM_TimeBase->APBx, MA_TIM_TimeBase->Clock);     /* Set Prescaler by target Clock*/
+        MA_TIM_TimeBase->Prescaler = MA_TIM_CalcPrescaler(MA_TIM_TimeBase->APBx, MA_TIM_TimeBase->TimerClock);     /* Set Prescaler by target Clock*/
     }
 
-    if( MA_TIM_TimeBase->Signal_Clock > 0 )
+    if( MA_TIM_TimeBase->SignalClock > 0 )
     {
-        MA_TIM_TimeBase->Period = (uint32_t) (MA_TIM_TimeBase->Clock / MA_TIM_TimeBase->Signal_Clock) - 1;    /* Set Period by target Signal_Clock*/ 
+        MA_TIM_TimeBase->Period = (uint32_t) (MA_TIM_TimeBase->TimerClock / MA_TIM_TimeBase->SignalClock) - 1;    /* Set Period by target Signal_Clock*/ 
     }
 }
 

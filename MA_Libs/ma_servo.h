@@ -1,3 +1,13 @@
+/**
+ * @author  Mustafa Altun
+ * @website http://altunmustafa.com
+ * @link    https://github.com/altunmustafa/stm32f4-bacis-projects
+ * @version 0.1
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   Customized Servo Motor Library for STM32F4xx devices
+ */	
+ 
 #ifndef MA_SERVO_H
 #define MA_SERVO_H
 

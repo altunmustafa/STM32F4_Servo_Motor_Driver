@@ -1,8 +1,8 @@
-#include "stm32f4xx.h"                  // Device header
-#include "ma_delay.h"
-#include "ma_servo.h"
-#include "ma_gpio.h"
-#include "ma_tim.h"
+#include "stm32f4xx.h"
+#include "../ma_libs/ma_delay.h"
+#include "../ma_libs/ma_servo.h"
+#include "../ma_libs/ma_gpio.h"
+#include "../ma_libs/ma_tim.h"
 
 #define LED_G D12 	/* Green LED */
 #define LED_O D13	/* Orange LED */
@@ -22,21 +22,8 @@ int main()
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM12, ENABLE);
 
-    /* Initialize GPIO for LEDs */
-    MA_GPIO_t D12, D13, D14, D15;
-    D12.Port    = GPIOD;
-    D12.Pin     = GPIO_Pin_12;
-    D12.Mode    = GPIO_Mode_OUT;
-    D12.OType   = GPIO_OType_PP;
-    D12.PuPd    = GPIO_PuPd_NOPULL;
-    D12.Speed   = GPIO_Speed_100MHz;
+    MA_GPIO_InitOnBoardLeds();
     
-    D15 = D14 = D13 = D12;
-    D13.Pin = GPIO_Pin_13;
-    D14.Pin = GPIO_Pin_14;
-    D15.Pin = GPIO_Pin_15;
-    MA_GPIO_MultiInit(4, D12, D13, D14, D15);
-
     /* Initialize GPIO for PWM Pin */
     MA_GPIO_t B14;
     B14.Port    = GPIOB;
@@ -53,8 +40,8 @@ int main()
     MA_TIM_TimeBaseInitStructure.TIMx           = TIM12;
     MA_TIM_TimeBaseInitStructure.ClockDivision  = 0;
     MA_TIM_TimeBaseInitStructure.CounterMode    = TIM_CounterMode_Up;
-    MA_TIM_TimeBaseInitStructure.Clock          = TIM12_FREQ;
-    MA_TIM_TimeBaseInitStructure.Signal_Clock   = SERVO_MOTOR_FREQ; 
+    MA_TIM_TimeBaseInitStructure.TimerClock     = TIM12_FREQ;
+    MA_TIM_TimeBaseInitStructure.SignalClock   = SERVO_MOTOR_FREQ; 
     MA_TIM_TimeBaseInit(&MA_TIM_TimeBaseInitStructure);
 
     /* Initialize the Channelx of TIMx for PWM Signal*/ 
@@ -64,7 +51,6 @@ int main()
     MA_TIM_OCInitStructure.OCMode       = TIM_OCMode_PWM1;
     MA_TIM_OCInitStructure.OCPolarity   = TIM_OCPolarity_High;
     MA_TIM_OCInitStructure.OutputState  = TIM_OutputState_Enable;
-    //MA_TIM_OCInitStructure.Pulse        = 200;
     MA_TIM_OCInit(&MA_TIM_OCInitStructure);
 
     MA_TIM_Enable(TIM12);
@@ -80,6 +66,7 @@ int main()
 	
     for(int angle=0; angle<=-180; angle+=5)
     {
+        GPIO_ToggleBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
         SERVO_SetAngle(servo1, angle);
         delay(1000);
     }

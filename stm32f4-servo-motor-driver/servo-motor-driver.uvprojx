@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>Servo_Motor_Driver</OutputName>
+          <OutputName>servo-motor-driver</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F4XX, HSE_VALUE=8000000</Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F4_Servo_Motor_Driver;.\MA_Libs</IncludePath>
+              <IncludePath>..\stm32f4-servo-motor-driver</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -390,47 +390,57 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>MA_Libs</GroupName>
+          <GroupName>ma_libs</GroupName>
           <Files>
             <File>
               <FileName>ma_delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MA_Libs\ma_delay.c</FilePath>
+              <FilePath>..\ma_libs\ma_delay.c</FilePath>
             </File>
             <File>
               <FileName>ma_delay.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\MA_Libs\ma_delay.h</FilePath>
-            </File>
-            <File>
-              <FileName>ma_servo.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\MA_Libs\ma_servo.h</FilePath>
-            </File>
-            <File>
-              <FileName>ma_servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MA_Libs\ma_servo.c</FilePath>
-            </File>
-            <File>
-              <FileName>ma_gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\MA_Libs\ma_gpio.h</FilePath>
+              <FilePath>..\ma_libs\ma_delay.h</FilePath>
             </File>
             <File>
               <FileName>ma_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MA_Libs\ma_gpio.c</FilePath>
+              <FilePath>..\ma_libs\ma_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>ma_gpio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\ma_libs\ma_gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>ma_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ma_libs\ma_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>ma_rcc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\ma_libs\ma_rcc.h</FilePath>
+            </File>
+            <File>
+              <FileName>ma_servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ma_libs\ma_servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>ma_servo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\ma_libs\ma_servo.h</FilePath>
             </File>
             <File>
               <FileName>ma_tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MA_Libs\ma_tim.c</FilePath>
+              <FilePath>..\ma_libs\ma_tim.c</FilePath>
             </File>
             <File>
               <FileName>ma_tim.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\MA_Libs\ma_tim.h</FilePath>
+              <FilePath>..\ma_libs\ma_tim.h</FilePath>
             </File>
           </Files>
         </Group>

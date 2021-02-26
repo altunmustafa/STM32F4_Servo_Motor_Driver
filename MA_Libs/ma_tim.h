@@ -1,3 +1,13 @@
+/**
+ * @author  Mustafa Altun
+ * @website http://altunmustafa.com
+ * @link    https://github.com/altunmustafa/stm32f4-bacis-projects
+ * @version 0.1
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   Customized Timer Library for STM32F4xx devices
+ */	
+ 
 #ifndef MA_TIM_H
 #define MA_TIM_H
 
@@ -10,21 +20,21 @@ extern "C" {
 #define APB1_CLOCK 168000000/4
 #define APB2_CLOCK 168000000/2
 
-#define MA_TIM_Enable(TIMx) TIM_Cmd(TIMx, ENABLE);
-#define MA_TIM_Disable(TIMx) TIM_Cmd(TIMx, DISABLE);
+#define MA_TIM_Enable(TIMx) TIM_Cmd(TIMx, ENABLE)
+#define MA_TIM_Disable(TIMx) TIM_Cmd(TIMx, DISABLE)
 
-#define MA_TIM_ARRPreloadEnable(TIMx) TIM_ARRPreloadConfig(TIMx, ENABLE);
-#define MA_TIM_ARRPreloadDisable(TIMx) TIM_ARRPreloadConfig(TIMx, DISABLE);
+#define MA_TIM_ARRPreloadEnable(TIMx) TIM_ARRPreloadConfig(TIMx, ENABLE)
+#define MA_TIM_ARRPreloadDisable(TIMx) TIM_ARRPreloadConfig(TIMx, DISABLE)
 
-#define MA_TIM_OC1PreloadEnable(TIMx) TIM_OC1PreloadConfig(TIMx, TIM_OCPreload_Enable);
-#define MA_TIM_OC2PreloadEnable(TIMx) TIM_OC2PreloadConfig(TIMx, TIM_OCPreload_Enable);
-#define MA_TIM_OC3PreloadEnable(TIMx) TIM_OC3PreloadConfig(TIMx, TIM_OCPreload_Enable);
-#define MA_TIM_OC4PreloadEnable(TIMx) TIM_OC4PreloadConfig(TIMx, TIM_OCPreload_Enable);
+#define MA_TIM_OC1PreloadEnable(TIMx) TIM_OC1PreloadConfig(TIMx, TIM_OCPreload_Enable)
+#define MA_TIM_OC2PreloadEnable(TIMx) TIM_OC2PreloadConfig(TIMx, TIM_OCPreload_Enable)
+#define MA_TIM_OC3PreloadEnable(TIMx) TIM_OC3PreloadConfig(TIMx, TIM_OCPreload_Enable)
+#define MA_TIM_OC4PreloadEnable(TIMx) TIM_OC4PreloadConfig(TIMx, TIM_OCPreload_Enable)
 
-#define MA_TIM_OC1PreloadDisable(TIMx) TIM_OC1PreloadConfig(TIMx, TIM_OCPreload_Disable);
-#define MA_TIM_OC2PreloadDisable(TIMx) TIM_OC2PreloadConfig(TIMx, TIM_OCPreload_Disable);
-#define MA_TIM_OC3PreloadDisable(TIMx) TIM_OC3PreloadConfig(TIMx, TIM_OCPreload_Disable);
-#define MA_TIM_OC4PreloadDisable(TIMx) TIM_OC4PreloadConfig(TIMx, TIM_OCPreload_Disable);
+#define MA_TIM_OC1PreloadDisable(TIMx) TIM_OC1PreloadConfig(TIMx, TIM_OCPreload_Disable)
+#define MA_TIM_OC2PreloadDisable(TIMx) TIM_OC2PreloadConfig(TIMx, TIM_OCPreload_Disable)
+#define MA_TIM_OC3PreloadDisable(TIMx) TIM_OC3PreloadConfig(TIMx, TIM_OCPreload_Disable)
+#define MA_TIM_OC4PreloadDisable(TIMx) TIM_OC4PreloadConfig(TIMx, TIM_OCPreload_Disable)
 
 typedef enum{
     APB1    = 1,
@@ -43,7 +53,7 @@ typedef struct{
     MA_TIM_APBx_t   APBx;
     TIM_TypeDef*    TIMx;       /* TIM1...TIM14 */
     uint16_t 	Prescaler;      /* Between 0x0000 and 0xFFFF so 0-65535. */
-    uint32_t	Clock;          /* Spacial parameter! 
+    uint32_t	TimerClock;     /* Spacial parameter! 
                                  * NOTICE: This value should be divisible by "SystemCoreClock" (168.000.000 for STM32F407)
                                  * Between 1-168.000.000 (Hz) for STM32F407 
                                  * If this parameter value is greater than 0, "Prescaler" is calculated according to this value,
@@ -51,7 +61,7 @@ typedef struct{
     uint16_t 	CounterMode;    /* TIM_CounterMode_Up
                                    TIM_CounterMode_Down - TIM_CounterMode_CenterAligned1 - TIM_CounterMode_CenterAligned2 - TIM_CounterMode_CenterAligned3*/
     uint32_t 	Period;         /* Between 0x0000 and 0xFFFF so 0 and 65535. */
-    uint32_t	Signal_Clock;   /* Spacial parameter! 
+    uint32_t	SignalClock;    /* Spacial parameter! 
                                  * NOTICE: This value should be divisible by "Clock"
                                  * Between 1-"Clock" (Hz) 
                                  * If this parameter value is greater than 0, "Period" is calculated according to this value,
